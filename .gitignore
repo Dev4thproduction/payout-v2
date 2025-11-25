@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+backend/node_modules/
+
+# Environment variables
+.env
+.env.local
+.env.production
+.env.development
+
+# Firebase credentials
+backend/*-firebase-adminsdk-*.json
+backend/serviceAccountKey.json
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build outputs
+dist/
+build/
+frontend/build/
+
+# Temporary files
+*.tmp
+*.temp

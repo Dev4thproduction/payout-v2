@@ -1,0 +1,272 @@
+.App {
+  text-align: center;
+}
+
+.marginTop{
+  margin-top: 200px !important;
+}
+
+.highlight {
+  background-color: yellow !important; /* Change the background color to highlight */
+  /* Add any other styles for highlighting */
+}
+
+.logout{
+  text-decoration: none;
+  color: black;
+}
+
+.container2{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.modal-content {
+  height: 500px;
+  overflow-x: scroll;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f4f4;
+}
+
+.container1 {
+  background-color: #fff;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.s1 {
+  text-align: center;
+}
+
+.small1 {
+  color: #555;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.h1 {
+  font-size: 28px;
+  color: #333;
+  margin: 20px 0;
+}
+
+.s2 {
+  padding: 20px 0;
+}
+
+.formgroup {
+  margin-bottom: 20px;
+}
+
+.label {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.fp {
+  text-align: right;
+}
+
+.link {
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.button1:hover {
+  background-color: #0056b3;
+}
+
+.link2 {
+  text-align: center;
+  margin-top: 10px;
+  color: #333;
+}
+
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+/* Pagination container */
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+/* Individual pagination item */
+.pagination li {
+  margin: 0 4px;
+  display: inline-block;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+/* Active pagination item */
+.pagination li.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+/* Previous and Next buttons */
+.pagination li.previous,
+.pagination li.next {
+  font-weight: bold;
+}
+
+/* Disabled pagination item (e.g., disabled Previous/Next) */
+.pagination li.disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.table-container {
+  max-height: 600px; /* Adjust the height as needed */
+  overflow: auto;
+  overflow-x: auto;
+  position: relative;
+}
+.table-container thead th {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1;
+}
+.fixed-header th:first-child{
+  position:sticky;
+  left:0px;
+  background-color:rgb(255, 255, 255);
+}
+.sticky-body  td:first-child
+{
+  position:sticky;
+  left:0px;
+  background-color:rgb(255, 255, 255);
+}
+.check{
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 2;
+}
+.aman{
+  width: 2000px !important;
+  overflow-x: scroll;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #333;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+.btn-purple {
+  background-color: purple;
+  color: white; /* You may need to adjust the text color for better contrast */
+  /* Add any additional styling as needed */
+}
+
+.fixBottom{
+  width: 100% !important;
+  height: 60px;
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  padding-top: 0.7rem;
+  padding-bottom: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
