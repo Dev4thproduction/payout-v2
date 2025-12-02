@@ -332,7 +332,13 @@ export const createDistribution = async (req, res) => {
   try {
     const newDistribution = new Distribution(req.body);
     const savedDistribution = await newDistribution.save();
-    res.status(201).json(savedDistribution);
+
+    // Populate supervisor and teamMembers before returning
+    const populatedDistribution = await Distribution.findById(savedDistribution._id)
+      .populate('supervisor', 'name email identifier')
+      .populate('teamMembers', 'name email identifier');
+
+    res.status(201).json(populatedDistribution);
   } catch (err) {
     console.error('Error creating distribution:', err);
     res.status(400).json({ message: 'Error creating distribution', error: err.message });
@@ -373,7 +379,9 @@ export const bulkSaveDistributions = async (req, res) => {
 // 📌 Get a single distribution
 export const getDistributionById = async (req, res) => {
   try {
-    const distribution = await Distribution.findById(req.params.id);
+    const distribution = await Distribution.findById(req.params.id)
+      .populate('supervisor', 'name email identifier')
+      .populate('teamMembers', 'name email identifier');
     if (!distribution) {
       return res.status(404).json({ message: 'Distribution not found' });
     }
@@ -387,7 +395,9 @@ export const getDistributionById = async (req, res) => {
 // 📌 Update a distribution
 export const updateDistribution = async (req, res) => {
   try {
-    const updatedDistribution = await Distribution.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const updatedDistribution = await Distribution.findByIdAndUpdate(req.params.id, req.body, { new: true })
+      .populate('supervisor', 'name email identifier')
+      .populate('teamMembers', 'name email identifier');
     if (!updatedDistribution) {
       return res.status(404).json({ message: 'Distribution not found' });
     }

@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const DistributionSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    default: ''
   },
   product: {
     type: String,
@@ -26,11 +26,11 @@ const DistributionSchema = new mongoose.Schema({
   },
   pos: {
     type: Number,
-    required: true
+    default: 0
   },
   basic: {
     type: Number,
-    required: true
+    default: 0
   },
   moneyCollection: {
     type: Number,
@@ -38,7 +38,7 @@ const DistributionSchema = new mongoose.Schema({
   },
   incentiveReceived: {
     type: Number,
-    required: true
+    default: 0
   },
   // Supervisor and Team for 60-40 distribution
   supervisor: {
@@ -65,7 +65,7 @@ const DistributionSchema = new mongoose.Schema({
   },
   employeeIncentive: {
     type: Number,
-    required: true
+    default: 0
   },
   // Reference to planned collection (optional)
   plannedCollectionId: {

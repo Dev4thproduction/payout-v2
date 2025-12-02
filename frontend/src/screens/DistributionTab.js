@@ -227,16 +227,6 @@ const AddEntryModal = React.memo(({
             disabled={loading}
           />
 
-          {/* Name */}
-          <input
-            type="text"
-            placeholder="Name"
-            value={formData.name || ''}
-            onChange={(e) => handleFieldChange("name", e.target.value)}
-            className="w-full border px-3 py-2 rounded"
-            disabled={loading}
-          />
-
           {/* Product Dropdown */}
           <select
             value={formData.product || ''}
@@ -253,7 +243,7 @@ const AddEntryModal = React.memo(({
           </select>
 
           {/* Number Fields */}
-          {['cases', 'pos', 'basic', 'moneyCollection', 'incentiveReceived', 'employeeIncentive'].map(field => (
+          {['cases', 'pos', 'basic', 'moneyCollection', 'incentiveReceived'].map(field => (
             <input
               key={field}
               type="number"
@@ -347,14 +337,12 @@ const DistributionTab = () => {
     const currentMonthOption = monthOptions[0];
     dispatch(setDistributionFormData({
       month: currentMonthOption?.value || '',
-      name: "",
       product: "",
       cases: "",
       pos: "",
       basic: "",
       moneyCollection: "",
       incentiveReceived: "",
-      employeeIncentive: "",
       supervisor: "",
       teamMembers: []
     }));
@@ -373,7 +361,11 @@ const DistributionTab = () => {
   };
 
   const handleModalSave = async () => {
-    if (!formData.month || !formData.process) return;
+    // Validate required fields based on Distribution model
+    if (!formData.month || !formData.product) {
+      alert("Please fill in all required fields: Month and Product");
+      return;
+    }
 
     if (editingItem) {
       await dispatch(updateDistribution(editingItem.id, formData));
@@ -438,7 +430,6 @@ const DistributionTab = () => {
             field: 'month',
             render: rowData => formatMonth(rowData.month)
           },
-          { title: 'Name', field: 'Name' },
           { title: 'Product', field: 'Product' },
           { title: 'No. of Cases', field: 'No. of Cases' },
           { title: 'POS', field: 'POS' },
@@ -468,7 +459,6 @@ const DistributionTab = () => {
             type: 'currency',
             currencySetting: { currencyCode: 'INR' }
           },
-          { title: 'Employee Incentive', field: 'Employee Incentive' },
           {
             title: 'Actions',
             field: 'actions',

@@ -551,10 +551,17 @@ export const fetchDistributions = () => async (dispatch, getState) => {
     const formattedData = (Array.isArray(data) ? data : []).map((item) => ({
       id: item._id || item.id,
       month: item.month,
-      monthKey: parseBackendMonth(item.month),
-      process: item.process,
-      quantity: item.quantity || 0,
-      notes: item.notes || "",
+      Product: item.product,
+      "No. of Cases": item.cases || 0,
+      POS: item.pos || 0,
+      Salary: item.basic || 0,
+      "Money Collection": item.moneyCollection || 0,
+      "Incentive Received": item.incentiveReceived || 0,
+      supervisor: item.supervisor || null,
+      supervisorIncentive: item.supervisorIncentive || 0,
+      teamIncentivePool: item.teamIncentivePool || 0,
+      individualTeamIncentive: item.individualTeamIncentive || 0,
+      teamMembers: item.teamMembers || [],
     }));
 
     dispatch({
@@ -575,11 +582,11 @@ export const addDistribution = (entryData) => async (dispatch, getState) => {
   try {
     dispatch({ type: ADD_DISTRIBUTION_REQUEST });
 
-    if (!entryData.month || !entryData.process) {
-      throw new Error("Missing required fields: month and process are required");
+    if (!entryData.month || !entryData.product) {
+      throw new Error("Missing required fields: month and product are required");
     }
 
-    const response = await fetch("http://localhost:5000/api/planned-collections/distribution", {
+    const response = await fetch("http://localhost:5000/api/planned-collections/distributions", {
       method: "POST",
       headers: getAuthHeaders(getState),
       body: JSON.stringify(entryData),
@@ -588,8 +595,18 @@ export const addDistribution = (entryData) => async (dispatch, getState) => {
     const data = await handleApiResponse(response);
     const newItem = {
       id: data._id,
-      ...entryData,
-      monthKey: parseBackendMonth(entryData.month),
+      month: data.month,
+      Product: data.product,
+      "No. of Cases": data.cases || 0,
+      POS: data.pos || 0,
+      Salary: data.basic || 0,
+      "Money Collection": data.moneyCollection || 0,
+      "Incentive Received": data.incentiveReceived || 0,
+      supervisor: data.supervisor || null,
+      supervisorIncentive: data.supervisorIncentive || 0,
+      teamIncentivePool: data.teamIncentivePool || 0,
+      individualTeamIncentive: data.individualTeamIncentive || 0,
+      teamMembers: data.teamMembers || [],
     };
 
     dispatch({
@@ -615,18 +632,28 @@ export const updateDistribution = (id, entryData) => async (dispatch, getState) 
 
     if (!id) throw new Error("ID is required for update operation");
 
-    const response = await fetch(`http://localhost:5000/api/planned-collections/distribution/${id}`, {
+    const response = await fetch(`http://localhost:5000/api/planned-collections/distributions/${id}`, {
       method: "PUT",
       headers: getAuthHeaders(getState),
       body: JSON.stringify(entryData),
     });
 
-    await handleApiResponse(response);
+    const data = await handleApiResponse(response);
 
     const updatedItem = {
-      id,
-      ...entryData,
-      monthKey: parseBackendMonth(entryData.month),
+      id: data._id,
+      month: data.month,
+      Product: data.product,
+      "No. of Cases": data.cases || 0,
+      POS: data.pos || 0,
+      Salary: data.basic || 0,
+      "Money Collection": data.moneyCollection || 0,
+      "Incentive Received": data.incentiveReceived || 0,
+      supervisor: data.supervisor || null,
+      supervisorIncentive: data.supervisorIncentive || 0,
+      teamIncentivePool: data.teamIncentivePool || 0,
+      individualTeamIncentive: data.individualTeamIncentive || 0,
+      teamMembers: data.teamMembers || [],
     };
 
     dispatch({
@@ -652,7 +679,7 @@ export const deleteDistribution = (id) => async (dispatch, getState) => {
 
     if (!id) throw new Error("ID is required for delete operation");
 
-    const response = await fetch(`http://localhost:5000/api/planned-collections/distribution/${id}`, {
+    const response = await fetch(`http://localhost:5000/api/planned-collections/distributions/${id}`, {
       method: "DELETE",
       headers: getAuthHeaders(getState),
     });
